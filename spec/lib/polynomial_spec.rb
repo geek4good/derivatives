@@ -33,5 +33,30 @@ RSpec.describe Polynomial do
       expect(derivative.coefficient).to eq(21)
       expect(derivative.exponent).to eq(2)
     end
+
+    context "for complex polynomials" do
+      subject(:polynomial) { described_class.new(coefficient: nil, exponent: nil, polynomials: polynomials) }
+      let(:polynomials) { [first_polynomial, second_polynomial] }
+
+      let(:first_polynomial) { described_class.new(coefficient: first_coefficient, exponent: first_exponent) }
+      let(:first_coefficient) { 4 }
+      let(:first_exponent) { 3 }
+
+      let(:second_polynomial) { described_class.new(coefficient: second_coefficient, exponent: second_exponent) }
+      let(:second_coefficient) { 3 }
+      let(:second_exponent) { 2 }
+
+      it "returns the polynomial's derivative, which is the sum of the first and second polynomials' derivatives" do
+        derivative = polynomial.differentiate
+        first_derivative = derivative.polynomials.first
+        second_derivative = derivative.polynomials.last
+
+        expect(first_derivative.coefficient).to eq(12)
+        expect(first_derivative.exponent).to eq(2)
+
+        expect(second_derivative.coefficient).to eq(6)
+        expect(second_derivative.exponent).to eq(1)
+      end
+    end
   end
 end

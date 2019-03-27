@@ -8,6 +8,8 @@ class Polynomial
   end
 
   def differentiate
-    self.class.new(coefficient: coefficient * exponent, exponent: exponent - 1)
+    polynomials.nil? ?
+      self.class.new(coefficient: coefficient * exponent, exponent: exponent - 1) :
+      self.class.new(coefficient: nil, exponent: nil, polynomials: polynomials.map(&:differentiate))
   end
 end
