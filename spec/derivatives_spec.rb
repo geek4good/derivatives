@@ -1,14 +1,4 @@
-root = File.expand_path("../..", __FILE__)
-$LOAD_PATH.unshift(root) unless $LOAD_PATH.include?(root)
-
-ENV["APP_ENV"] = "test"
-
-require "derivatives"
-
-require "rack/test"
-require "rspec"
-
-describe "The Differentiation Web Service" do
+RSpec.describe "The Differentiation Web Service" do
   include Rack::Test::Methods
 
   def app
