@@ -18,7 +18,9 @@ class Polynomial
   end
 
   def to_s
-    polynomials.nil? ? as_string : polynomials.map { |p| p.send(:as_string) }.join("+")
+    polynomials.nil? ?
+      as_string :
+      polynomials.map { |p| p.send(:as_string) }.reject { |s| s == "0" }.join("+")
   end
 
   private
