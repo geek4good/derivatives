@@ -18,6 +18,12 @@ class Polynomial
   end
 
   def to_s
+    polynomials.nil? ? as_string : polynomials.map { |p| p.send(:as_string) }.join("+")
+  end
+
+  private
+
+  def as_string
     return "0" if coefficient.zero?
     return "1" if coefficient == 1 && exponent.zero?
 

@@ -126,5 +126,22 @@ RSpec.describe Polynomial do
         expect(polynomial.to_s).to eq("3x")
       end
     end
+
+    context "for complex polynomials" do
+      subject(:polynomial) { described_class.new(polynomials: polynomials) }
+      let(:polynomials) { [first_polynomial, second_polynomial] }
+
+      let(:first_polynomial) { described_class.new(coefficient: first_coefficient, exponent: first_exponent) }
+      let(:first_coefficient) { 6 }
+      let(:first_exponent) { 2 }
+
+      let(:second_polynomial) { described_class.new(coefficient: second_coefficient, exponent: second_exponent) }
+      let(:second_coefficient) { 8 }
+      let(:second_exponent) { 1 }
+
+      it "returns the human readable form" do
+        expect(polynomial.to_s).to eq("6x^2+8x")
+      end
+    end
   end
 end
