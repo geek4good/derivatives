@@ -6,4 +6,8 @@ class Polynomial
     @exponent = exponent
     @polynomials = polynomials
   end
+
+  def differentiate
+    self.class.new(coefficient: coefficient * exponent, exponent: exponent - 1)
+  end
 end

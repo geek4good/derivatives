@@ -25,4 +25,13 @@ RSpec.describe Polynomial do
       end
     end
   end
+
+  describe "#differenciate" do
+    it "returns the polynomial's derivative" do
+      derivative = polynomial.differentiate
+
+      expect(derivative.coefficient).to eq(21)
+      expect(derivative.exponent).to eq(2)
+    end
+  end
 end
