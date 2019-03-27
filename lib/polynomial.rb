@@ -16,4 +16,16 @@ class Polynomial
       self.class.new(coefficient: coefficient * exponent, exponent: exponent - 1) :
       self.class.new(polynomials: polynomials.map(&:differentiate))
   end
+
+  def to_s
+    return "0" if coefficient.zero?
+    return "1" if coefficient == 1 && exponent.zero?
+
+    output = ""
+    output << coefficient.to_s if coefficient > 1
+    output << "x" if exponent > 0
+    output << "^#{exponent}" if exponent > 1
+
+    return output
+  end
 end

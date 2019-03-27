@@ -85,4 +85,46 @@ RSpec.describe Polynomial do
       end
     end
   end
+
+  describe "#to_s" do
+    subject(:polynomial) { described_class.new(coefficient: coefficient, exponent: exponent) }
+    let(:coefficient) { 3 }
+    let(:exponent) { 5 }
+
+    it "returns a string representation of the polynomial" do
+      expect(polynomial.to_s).to eq("3x^5")
+    end
+
+    context "when the coefficient is 0" do
+      let(:coefficient) { 0 }
+
+      it "returns 0" do
+        expect(polynomial.to_s).to eq("0")
+      end
+    end
+
+    context "when the coefficient is 1" do
+      let(:coefficient) { 1 }
+
+      it "omits the coefficient" do
+        expect(polynomial.to_s).to eq("x^5")
+      end
+    end
+
+    context "when the exponent is 0" do
+      let(:exponent) { 0 }
+
+      it "omits x all together" do
+        expect(polynomial.to_s).to eq("3")
+      end
+    end
+
+    context "when the exponent is 1" do
+      let(:exponent) { 1 }
+
+      it "omits the exponent" do
+        expect(polynomial.to_s).to eq("3x")
+      end
+    end
+  end
 end
