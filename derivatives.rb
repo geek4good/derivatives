@@ -13,6 +13,10 @@ end
 
 private
 
-def parse_coefficients!(str)
-  str.split("/").map { |segment| Integer(segment) }
+def parse_coefficients!(path)
+  path.split("/").map { |segment| Integer(segment) }
+rescue ArgumentError
+  status 400
+  body "Only integers are allowed in the path"
+  nil
 end
