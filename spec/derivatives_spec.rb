@@ -15,10 +15,10 @@ describe "The Differentiation Web Service" do
     Sinatra::Application
   end
 
-  it "says hello" do
-    get "/"
+  it "returns the derivatives of a polymonial" do
+    get "/differentiate/4/3/2/1"
 
     expect(last_response).to be_ok
-    expect(last_response.body).to eq("Hello world!")
+    expect(last_response.body).to eq("12x^2+6x+2")
   end
 end
